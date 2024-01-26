@@ -10,28 +10,30 @@ const cron = require('node-cron');
 const path = require('path');
 
 require('dotenv').config();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 3000;
 
 
 io.on('connection', (socket) => {
 
     socket.on('join_room', (data) => {
         socket.join(data.roomid);
+        console.log("joined room", data.roomid);
+        // socket.to(data.roomid).broadcast.emit('new_user_joined',{userid:data.userid,username:data.username});
     })
 
-   
-    
-    socket.on('msg_send', (data) => {
-        const messageData = {
-            msg: data.msg,
-            inputUsername: data.inputUsername,
-            roomid: data.roomid,
-            timestamp: new Date().toISOString() 
-        };
-        // io.to method is used to send message to a specific room 
-        io.to(data.roomid).emit('msg_rvcd', messageData);
-    });
+    socket.on('msg_send', async (msg) => {
 
+        // io.to send the message to all the users in the room including the sender 
+
+        await chat.create({
+            content: msg.msg,
+            user: msg.inputUsername,
+            roomId: msg.roomid
+        })
+        io.to(msg.roomid).emit('msg_rvcd', msg);
+        // socket.emit('msg_rvcd',msg) from the same client
+        //socket.broadcast.emit('msg_rvcd',msg) 
+    })
 
 
 });
