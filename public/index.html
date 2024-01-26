@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Chat App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+        }
+
+        .welcome-container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #007BFF;
+            margin-bottom: 20px;
+        }
+
+        .lead {
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .btn-primary {
+            background-color: #007BFF;
+            border: none;
+            transition: background-color 0.3s;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .input-group {
+            margin-top: 20px;
+        }
+
+        .form-control {
+            border-radius: 10px;
+        }
+
+        .input-group-append {
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="welcome-container">
+        <h1>Welcome to Chat App</h1>
+        <p class="lead">Join an existing chat or create a new one to start chatting!</p>
+
+        <!-- Create New Chat Button -->
+        <button class="btn btn-primary btn-lg" type="button" id="createNewChat">Create New Chat</button>
+
+        <!-- Input Field for Entering Existing Room ID -->
+        <div class="input-group">
+            <input type="text" class="form-control form-control-lg" id="existingRoomIdInput"
+                placeholder="Enter Existing Room ID">
+            <div class="input-group-append">
+                <button class="btn btn-primary btn-lg" type="button" id="enterExistingChat">Enter Chat</button>
+            </div>
+        </div>
+
+        <p class="random-room-id" id="randomRoomId"></p>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        // Function to generate a random room ID
+        function generateRandomRoomId() {
+            return Math.floor(Math.random() * 900) + 100;
+        }
+
+        // Create New Chat Button Click Event
+        document.getElementById('createNewChat').addEventListener('click', function () {
+            const roomid = generateRandomRoomId();
+
+            // Redirect to the new chat with the random room ID
+            window.location.href = `/chat/${roomid}`;
+        });
+
+        // Enter Existing Chat Button Click Event
+        document.getElementById('enterExistingChat').addEventListener('click', function () {
+            const existingRoomId = document.getElementById('existingRoomIdInput').value.trim();
+            if (existingRoomId) {
+                // Redirect the user to the entered room
+                window.location.href = `/chat/${existingRoomId}`;
+            }
+        });
+    </script>
+</body>
+
+</html>

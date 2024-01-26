@@ -100,6 +100,52 @@
         .new-message {
             background-color: #e6f7ff !important;
         }
+
+        /* Footer styling */
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            border-radius: 10px;
+            margin-top: 10px;
+        }
+
+        .schedule-section {
+            display: flex;
+            align-items: center;
+        }
+
+        .schedule-input {
+            width: 150px;
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .ampm-select {
+            width: 80px;
+            margin-right: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .schedule-btn {
+            padding: 12px 20px;
+            border: none;
+            background-color: #007BFF;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .schedule-btn:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 
@@ -110,15 +156,22 @@
                 <li class="list-group-item rounded-lg">
                     <div class="d-flex align-items-center">
                         <div class="mr-3">
-                            <span class="badge badge-primary p-2"><%= chats[i].username.charAt(0) %></span>
+                            <span class="badge badge-primary p-2">
+                                <%= chats[i].username.charAt(0) %>
+                            </span>
                         </div>
                         <div>
-                            <strong><%= chats[i].username %>:</strong> <%= chats[i].content %>
-                            <span class="message-time"><%= new Date(chats[i].timestamp).toLocaleTimeString() %></span>
+                            <strong>
+                                <%= chats[i].username %>:
+                            </strong>
+                            <%= chats[i].content %>
+                                <span class="message-time">
+                                    <%= new Date(chats[i].timestamp).toLocaleTimeString() %>
+                                </span>
                         </div>
                     </div>
                 </li>
-            <% } %>
+                <% } %>
         </ul>
 
         <div class="chat-input mt-3">
@@ -174,6 +227,10 @@
             // Smooth scroll to the latest message
             msgList.scrollTop = msgList.scrollHeight;
         });
+
+       
+
+        
     </script>
 </body>
 
