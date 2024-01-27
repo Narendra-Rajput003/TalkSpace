@@ -6,8 +6,8 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    { "src": "/chat/:roomid", "dest": "/views/index.ejs" },
+   "routes": [
+    { "src": "/chat/:roomid", "dest": "/index.js" },
     { "src": "/(.*)", "dest": "/index.js" }
   ]
 }
