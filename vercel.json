@@ -1,12 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      { "src": "public", "use": "@vercel/static-build" },
-      { "src": "index.js", "use": "@vercel/node" }
-    ],
-    "routes": [
-      { "src": "/chat/:roomid", "dest": "views/index.ejs", "type": "text/html" },
-      { "src": "/(.*)", "dest": "public/$1" }
-    ]
-  }
-  
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "index.js"
+    }
+  ]
+}
